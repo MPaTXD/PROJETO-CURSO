@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Teste2.Models.Musico>
+
+@{
+    ViewBag.Title = "ListagemConta";
+}
+
+<h2>Informações da Sua Conta</h2>
+<br />
+<br />
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>Exemplo de Relatório em PDF</title>
+
+    <!-- css -->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    @foreach (var item in Model)
+    {
+        <div class="container">
+            <div class="row-fluid">
+                <ul class="thumbnails">
+                    <li class="span3">
+                        <div class="thumbnail" style="padding: 0">
+                            <div style="padding:4px">
+                                <img alt="300x200" style="width: 100%" src="@item.LinkPerfil">
+                            </div>
+                            <div class="caption">
+                                <h2>Nome do Musico: @item.Nome</h2>
+                                <p>Email: @item.Email</p>
+                                <p>Idade: @item.Idade</p>
+                                <p>Categoria: @item.Categoria</p>
+                                <p>Senha: @item.Senha</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    }
+</body>
+</html>

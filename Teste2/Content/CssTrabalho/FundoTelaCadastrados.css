@@ -1,0 +1,17 @@
+﻿body {
+    background-image: url(http://eskipaper.com/images/headphones-wallpaper-4.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.container {
+    position: relative;
+}
+
+
+.center {
+    color: ActiveBorder;
+    margin: auto;
+    text-align: center;
+    margin-top: 160px;
+}

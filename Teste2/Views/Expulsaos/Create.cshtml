@@ -1,0 +1,92 @@
+﻿@model Teste2.Models.Expulsao
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" type="text/css" href="~/Content/CssTrabalho/TelaCadastro.css" />
+<!------ Include the above in your HEAD tag ---------->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Website CSS style -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Website Font style -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+<!--Links com Css e Js-->
+
+<div>
+    <h1>Expulsar Membro</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">ATENÇÃO!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Os dados informados estão corretos?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a><input type="submit" value="Sim" class="btn btn-sm btn btn-primary"></a>
+                        <a href="@Url.Action("Create","Expulsoes")" class="btn btn-sm btn-danger" role="button">Não</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <title>Expulsão</title>
+    <div class="container">
+        <div class="row main">
+            <div class="main-login main-center">
+                <h5>Preencha todos os campos abaixo.</h5>
+                <div class="form-group col-md-10">
+                    <label for="comment">Mensagem de expulsão:</label>
+                    <textarea class="form-control input-sm" type="textarea" rows="7" placeholder="Message" id="@Html.EditorFor(model => model.Texto)</textarea>
+                    @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="form-group">
+                    <div class="input-group">
+                        @Html.EditorFor(model => model.Motivo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Motivo", @required = "" } })
+                        @Html.ValidationMessageFor(model => model.Motivo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <a><input type="button" id="button" value="Enviar" class="btn btn-primary" data-toggle="modal" data-target="#myModal"></a> <a href="@Url.Action("TelaMusico","Musicos")" class="btn btn-primary" role="button" id="button">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

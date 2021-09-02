@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Teste2.Models.Banda>
+
+@{
+    ViewBag.Title = "Criadas";
+}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/index.css" />]
+<link rel="stylesheet" type="text/css" href="~/Content/CssTrabalho/FundoAdicionarMembro.css" />
+<!------ Include the above in your HEAD tag ---------->
+<title>Bandas Cadastradas</title>
+@foreach (var item in ViewBag.Bandas)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12" style="color:white">
+                <h3><strong>@item.NomeBanda</strong></h3>
+            </div><!-- /col-sm-12 -->
+        </div><!-- /row -->
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="thumbnail">
+                    <img src="@item.LinkImagem" class="img-responsive" alt="Cinque Terre" width="600" height="200">
+                </div><!-- /thumbnail -->
+            </div><!-- /col-sm-1 -->
+            <div class="col-sm-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Gênero @item.Tipo</strong>
+                    </div>
+                    <div class="panel-body">
+                        <p><strong>Dono da Banda: @item.NomeDono</strong></p>
+                        <p>Quantidade de Membros na banda: @item.Quantidade</p>
+                        <p><strong>Membros</strong></p>
+                        @foreach (var item2 in ViewBag.Musicos)
+                        {
+                            if (item.BandaId == item2.Fk_Banda)
+                            {
+                                <span class="text-muted">@item2.Musico.Nome - </span>
+                                <span class="text-muted">@item2.Musico.Categoria</span>
+                                <br />
+                            }
+                        }
+                    </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+            </div><!-- /col-sm-5 -->
+        </div><!-- /row -->
+    </div><!-- /container -->
+}
+
+<a href="@Url.Action("TelaMusico","Musicos")" type="button" id="button" class="btn btn btn-danger login-button">Voltar para Página Inicial</a>

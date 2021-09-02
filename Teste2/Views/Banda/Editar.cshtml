@@ -1,0 +1,109 @@
+﻿@model Teste2.Models.Banda
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<!------ PopUp ---------->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<!------ Include the above in your HEAD tag ---------->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Website CSS style -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" type="text/css" href="~/Content/CssTrabalho/TelaCadastro.css" />
+<!-- Website Font style -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+<!--Links com Css e Js-->
+<div>
+    <h1>Editar Banda</h1>
+</div>
+<script>
+    var msg = '@TempData["Mensagem2"]';
+    if (msg.length) {
+        alert(msg);
+    }
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.BandaId)
+
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">ATENÇÃO!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Os dados informados estão corretos?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a><input type="submit" value="Sim" class="btn btn-sm btn btn-primary"></a>
+                        <a href="@Url.Action("Editar","Banda")" class="btn btn-sm btn-danger" role="button">Não</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <title>Editar Banda</title>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="row main">
+            <div class="main-login main-center">
+                <h5>Preencha todos os campos abaixo.</h5>
+                <div class="form-group">
+                    <label for="namebanda" class="cols-sm-2 control-label">Nome da Banda</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            @Html.EditorFor(model => model.NomeBanda, new { htmlAttributes = new { @class = "form-control", @placeholder = "Digite o Nome da Banda", @required = "" } })
+                            @Html.ValidationMessageFor(model => model.NomeBanda, "", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tipo" class="cols-sm-2 control-label">Tipo da Banda</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Digite o Tipo da Banda", @required = "" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tipo" class="cols-sm-2 control-label">Imagem da Banda</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            @Html.EditorFor(model => model.LinkImagem, new { htmlAttributes = new { @class = "form-control", @placeholder = "Imagem da Banda", @required = "" } })
+                            @Html.ValidationMessageFor(model => model.LinkImagem, "", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <a><input type="button" id="button" value="Editar" class="btn btn-primary" data-toggle="modal" data-target="#myModal"></a> <a href="@Url.Action("TelaMusico","Musicos")" class="btn btn-primary" role="button" id="button">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

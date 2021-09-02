@@ -1,0 +1,187 @@
+﻿@model Teste2.Models.Musico
+
+
+
+@{
+    ViewBag.Title = "Logado";
+}
+
+<!--Links JS E CSS-->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/CssTrabalho/TelaMusico.css" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="~/Scripts/Trabalho/TelaMusico.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+<!--Links JS E CSS-->
+<!--CONDIÇÃO E TELA DO MUSICO-->
+
+<script>
+    var msg = '@TempData["Mensagem"]';
+    if (msg.length) {
+        alert(msg);
+    }
+</script>
+@if (Session["MusicoID"] != null)
+{
+
+    <title>Página do Usúario</title>
+    <body class="home">
+        <div class="container-fluid display-table">
+            <div class="row display-table-row">
+                <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+                    <div class="logo">
+                        <a hef="home.html">
+                            <img src="http://rs795.pbsrc.com/albums/yy238/joecalvin/YERBAS/rockmanheavy.gif?w=280&h=210&fit=crop" alt="logado_logo" class="hidden-xs hidden-sm">
+                            <img src="http://forum.imguol.com/avatars/gallery/Animados%20(5)/animados245.gif" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
+                        </a>
+                    </div>
+                    <div class="navi">
+                        <ul>
+                            <li class="active"><a href="http://localhost:55509/Musicos/TelaMusico"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Inicio</span></a></li>
+                            @if (ViewBag.HabilitarBanda == null)
+                            {
+                                <li><a href="@Url.Action("Registrar", "Banda", new { id = @Session["MusicoID"] })"><i class="fa fa-user-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Criar Banda</span></a></li>
+                            }
+                            @if (ViewBag.EntrarBanda != 0)
+                            {
+                                <li><a href="@Url.Action("create", "Solicitacoes",new { id = @Session["MusicoID"]})"><i class="fa fa-group" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Entrar na Banda</span></a></li>
+                            }
+                            @foreach (var item in ViewBag.Verificar)
+                            {
+                                if (ViewBag.VerificarBanda != null)
+                                {
+                                    <li><a href="@Url.Action("Solicitacao", "Banda", new { id = item.BandaId, id2 = Session["MusicoID"] })"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Solicitações de Entrada</span></a></li>
+                                    <li><a href="@Url.Action("Create", "Convites", new { id = @Session["MusicoID"] })"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Enviar Convite</span></a></li>
+                                    <li><a href="@Url.Action("Listar", "Expulsaos", new { id = @Session["MusicoID"], id2 = item.BandaId })"><i class="fa fa-ban" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Expulsar da Banda</span></a></li>
+                                    <li><a href="@Url.Action("Editar", "Banda", new { id = item.BandaId })"><i class="fa fa-pencil" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Editar Banda</span></a></li>
+                                    <li><a href="@Url.Action("deletar", "Banda", new { id = item.BandaId })"><i class="fa fa-warning" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Excluir Banda</span></a></li>
+                                }
+                            }
+                            @if (ViewBag.VerificarMusicoBanda != null)
+                            {
+                                <li><a href="@Url.Action("Index", "MusicoBandas", new { id = @Session["MusicoID"] })"><i class="fa fa-times-circle-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Sair da Banda</span></a></li>
+                            }
+                            <li><a href="@Url.Action("Detalhes", new { id = @Session["MusicoID"]})"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Detalhes</span></a></li>
+                            <li><a href="@Url.Action("Cadastrados")"><i class="fa fa-child" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Usuarios</span></a></li>
+                            <li><a href="@Url.Action("Editar", new { id = @Session["MusicoID"]})"><i class="fa fa-pencil" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Editar Cadastro</span></a></li>
+                            <li><a href="@Url.Action("Deletar", new { id = @Session["MusicoID"]})"><i class="fa fa-user-times" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Excluir Conta</span></a></li>
+                            <li><a href="@Url.Action("ListagemConta","Relatorios", new { id = @Session["MusicoID"]})"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Relatório da Conta</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-10 col-sm-11 display-table-cell v-align">
+                    <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+                    <div class="row">
+                        <header>
+                            <div class="col-md-7">
+                                <nav class="navbar-default pull-left">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                    </div>
+                                </nav>
+                                <div class="search hidden-xs hidden-sm">
+                                    <input type="text" placeholder="Search" id="search">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="header-rightside">
+                                    <ul class="list-inline header-top pull-right">
+                                        <li class="hidden-xs"><a href="@Url.Action("Cadastradas","Banda")" class="add-project">Bandas</a></li>
+                                        <li>
+                                            <a href="@Url.Action("SeusConvites","Convites", new { id=@Session["MusicoID"]})" class="icon-info">
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                                <span class="label label-primary">@ViewBag.Convites</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Expulsoes","Expulsaos", new { id=@Session["MusicoID"]})" class="icon-info">
+                                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                                <span class="label label-primary">@ViewBag.Expulsao</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="icon-info">
+                                                <i class="fa fa-bell" aria-hidden="true"></i>
+                                                <span class="label label-primary">@ViewBag.Solicitacoes</span>
+                                            </a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <img src="@Session["LinkPerfil"].ToString()" alt="user">
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <div class="navbar-content">
+                                                        <span>@Session["Nome"].ToString()</span>
+                                                        <p class="text-muted small">
+                                                            @Session["Email"].ToString()
+                                                        </p>
+                                                        <div class="divider">
+                                                        </div>
+                                                        <a href="@Url.Action("Deslogar")" class="view btn-sm active">Deslogar</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="user-dashboard">
+                        <h1>Bem Vindo - @Session["Nome"].ToString() </h1>
+                        <div class="container">
+                            <h2>Você entrou no painel do Musico</h2>
+                            <p>Gerencia sua informações, Entre ou Crie uma Banda!</p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe width="854" height="480" src="https://www.youtube.com/embed/IpfJrqxsyJ0?list=RDIpfJrqxsyJ0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div id="add_project" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header login-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h4 class="modal-title">Add Project</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" placeholder="Project Title" name="name">
+                        <input type="text" placeholder="Post of Post" name="mail">
+                        <input type="text" placeholder="Author" name="passsword">
+                        <textarea placeholder="Desicrption"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="cancel" data-dismiss="modal">Close</button>
+                        <button type="button" class="add-project" data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <!--CONDIÇÃO E TELA DO MUSICO-->
+
+}
+
+
+
+
+
+
+

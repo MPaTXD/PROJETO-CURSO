@@ -1,0 +1,18 @@
+﻿body {
+    background-image: url(http://hanedanrpg.com/photos/hanedanrpg/26/129897.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.container {
+    position: relative;
+}
+
+
+.center {
+    color: ActiveBorder;
+    margin: auto;
+    text-align: center;
+    margin-top: 160px;
+}
+

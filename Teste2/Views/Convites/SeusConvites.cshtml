@@ -1,0 +1,48 @@
+﻿@model Teste2.Models.Convite
+
+@{
+    ViewBag.Title = "SeusConvites";
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="~/Content/CssTrabalho/Convite.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/CssTrabalho/FundoSolicitacao.css" rel="stylesheet" type="text/css" />
+<title>Convites</title>
+@foreach (var item2 in ViewBag.Musico)
+{
+    <h2 class="center">Olá @item2.Nome</h2>
+
+    foreach (var item in ViewBag.convites)
+    {
+
+
+        using (Html.BeginForm(new { id2 = item.ConviteId, id3 = item.BandaConvite }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="container">
+                <div class="page-header">
+                    <h1 id="timeline">Convites</h1>
+                </div>
+                <ul class="timeline">
+                    <li>
+                        <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="timeline-title">@item.NomeBanda</h4>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+                            </div>
+                            <div class="timeline-body">
+                                <p>@item.Texto.</p>
+                            </div>
+                            <br />
+                            <a><input type="submit" value="Entrar na Banda" class="btn btn-success btn-primary"> </a><a href="@Url.Action("ExcluirConvite", new { id2 = item.ConviteId })"><input type="button" value="Excluir Convite" class="btn btn-danger btn-primary"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        }
+    }
+}
+<a href="@Url.Action("TelaMusico","Musicos")" type="button" id="button" class="btn btn btn-danger login-button">Voltar para Página Inicial</a>
+

@@ -1,0 +1,82 @@
+﻿@model Teste2.Models.Musico
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<div class="center">
+    <h1><strong>Detalhes do Músico</strong></h1>
+</div>
+
+<!--LINK COM JS E CSS-->
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="~/Scripts/Trabalho/DetalhesMusico.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/CssTrabalho/FundoTelaDetalhes.css" />
+
+<!------ Include the above in your HEAD tag ---------->
+<!--LINK COM JS E CSS-->
+<!--Tela de Detalhes-->
+
+<title>Detalhes do Musico</title>
+        <div class="container">
+            <div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                <div class="row user-row">
+                    <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
+                        <img src="https://thumbs.gfycat.com/EmotionalSpectacularCaterpillar-max-1mb.gif" class="img-responsive" alt="Cinque Terre" width="350" height="250">
+                    </div>
+                    <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                        <strong>@Html.DisplayFor(model => model.Nome)</strong><br>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".cyruxx">
+                        <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+                    </div>
+                </div>
+                <div class="row user-infos cyruxx">
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Informações</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                        <img src="@Session["LinkPerfil"].ToString()" class="img-responsive" alt="Cinque Terre" width="350" height="250">
+                                    </div>
+                                    <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+                                        <br>
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Nome</td>
+                                                    <td>@Html.DisplayFor(model => model.Nome)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Idade</td>
+                                                    <td>@Html.DisplayFor(model => model.Idade) anos</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Email</td>
+                                                    <td>@Html.DisplayFor(model => model.Email)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Categoria</td>
+                                                    <td>@Html.DisplayFor(model => model.Categoria)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Senha</td>
+                                                    <td>@Html.DisplayFor(model => model.Senha)</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <a href="@Url.Action("TelaMusico")" class="btn btn-primary" role="button">Voltar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--Tela de Detalhes-->

@@ -1,0 +1,98 @@
+﻿@model Teste2.Models.Banda
+
+@{
+    /**/
+
+    ViewBag.Title = "Deletar";
+}
+<link href="~/Content/CssTrabalho/DetalhesMusico.css" rel="stylesheet" type="text/css" />
+<!------ PopUp ---------->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/CssTrabalho/FundoTelaInicio.css" />
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div class="center" style="color:black">
+    <h1><strong>Deletar sua Banda</strong></h1>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">ATENÇÃO!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Deseja mesmo Excluir sua Banda?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-sm btn-danger" id="button" value="Sim" data-toggle="tooltip" data-original-title="Remove this user">
+                        <a href="@Url.Action("TelaMusico","Musicos")" class="btn btn-sm btn-primary" role="button">Não</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <!--Tela Excluir Musico-->
+    <title>Sair da Banda</title>
+            <div class="container">
+                <div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                    <div class="row user-infos cyruxx">
+                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Informações</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                            <img src="@Html.DisplayFor(model => model.LinkImagem)" alt="ALT NAME" class="img-responsive" width="320" height="200" />
+                                        </div>
+                                        <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+                                            <strong>Informações da sua Banda!</strong><br>
+                                            <table class="table table-user-information">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Nome da Banda:</td>
+                                                        <td>@Html.DisplayFor(model => model.NomeBanda)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dono da Banda:</td>
+                                                        <td>@Html.DisplayFor(model => model.NomeDono)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tipo da Banda:</td>
+                                                        <td>@Html.DisplayFor(model => model.Tipo)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Quantidade de Membros: </td>
+                                                        <td>@Html.DisplayFor(model => model.Quantidade)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">Excluir</button> <a href="@Url.Action("TelaMusico","Musicos")" class="btn btn-sm btn-primary" role="button">Voltar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!--Tela Excluir Musico-->
+}
+

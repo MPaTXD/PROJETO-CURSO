@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Teste2.Models.Convite>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Musico.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Texto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BandaConvite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeBanda)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Musico.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Texto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BandaConvite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeBanda)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ConviteId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ConviteId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ConviteId })
+        </td>
+    </tr>
+}
+
+</table>

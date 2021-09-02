@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Teste2.Models.Banda>
+
+@{
+    ViewBag.Title = "ListagemBandasGenero";
+}
+
+<h2>Bandas do Genero Rock</h2>
+<br />
+<br />
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>Exemplo de Relatório em PDF</title>
+
+    <!-- css -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <!------ Include the above in your HEAD tag ---------->
+    @foreach (var item in Model)
+    {
+        <div class="container">
+            <div class="row">
+                <ul class="thumbnails">
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img src="@item.LinkImagem" alt="ALT NAME" class="img-responsive" width="320" height="200"/>
+                            <div class="caption">
+                                <h3>Nome da Banda: @item.NomeBanda</h3>
+                                <p>Dono da Banda: @item.Dono</p>
+                                <p>Genero: @item.Tipo</p>
+                                <p>Quantidade de Membros: @item.Quantidade</p>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    }
+</body>
+</html>

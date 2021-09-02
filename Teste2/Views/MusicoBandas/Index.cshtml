@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Teste2.Models.MusicoBanda>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/CssTrabalho/FundoSairBanda.css"/>
+<!------ Include the above in your HEAD tag ---------->
+<title>Suas Bandas</title>
+<div class="container">
+    <div class="row">
+        <ul class="thumbnails">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="@Html.DisplayFor(modelItem => item.Banda.LinkImagem)" alt="ALT NAME" class="img-responsive" width="320" height="200" />
+                        <div class="caption">
+                            <h3>@Html.DisplayFor(modelItem => item.Banda.NomeBanda)</h3>
+                            <p>Quantidade de Membros: @Html.DisplayFor(modelItem => item.Banda.Quantidade)</p>
+                            <p align="center">
+                                <a href="@Url.Action("Delete", new { id = item.Banda.BandaId, id1 = item.Musico.MusicoId})" class="btn btn-primary btn-block">Sair da Banda</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </ul>
+    </div>
+    <a href="@Url.Action("TelaMusico","Musicos")" type="button" id="button" class="btn btn btn-danger login-button">Voltar para Página Inicial</a>
+</div>
+
+
+
+
+

@@ -1,0 +1,60 @@
+﻿<!--Links JS E CSS-->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" type="text/css" href="~/Content/CssTrabalho/TelaInicio.css" />
+<!--Links JS E CSS-->
+<!--Tela de Inicio-->
+
+<script>
+    var msg = '@TempData["Mensagem"]';
+    if (msg.length) {
+        alert(msg);
+    }
+</script>
+<title>Inicio</title>
+<div class="wrapper">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand text-uppercase" href="@Url.Action("Inicio","Musicos")">Music Creations  <span class="label label-success text-capitalize">XD</span></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Créditos</a></li>
+                    <a href="@Url.Action("Login","Musicos")" class="btn btn-success navbar-btn btn-circle" role="button">Login</a>
+                    <a href="@Url.Action("Registrar","Musicos")" class="btn btn-danger navbar-btn btn-circle" role="button">Registre-se</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="content">
+                        <div class="pull-middle">
+                            <h1 class="page-header">Bem Vindos ao Music Creations.</h1>
+                            <p class="lead">Crie sua Banda de Maneira Rapido e Segura.</p>
+                            <a href="@Url.Action("ListagemBandasGenero","Relatorios")" class="btn btn-primary navbar-btn btn-circle" role="button">Relatório de Bandas</a>
+                            <a href="@Url.Action("ListagemMusicos","Relatorios")" class="btn btn-primary navbar-btn btn-circle" role="button">Relatório de Musicos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
+                    <div class="phone">
+                        <img class="img-responsive img-rounded" src="http://3.bp.blogspot.com/-wue0Fj9QNzk/UYKr7rMhkGI/AAAAAAAABxI/LE0J7KIG_QI/s1600/Music+clipart+(14).png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<!--Tela de Inicio-->
